@@ -92,7 +92,7 @@ Note: Output should be:
 * Doing the Flux source configuration as showed below:
 
 ```
-flux create source git flux-system --url=ssh://git@ssh.dev.azure.com/v3/rafajhribeiro/k8s-labs/k8s-labs-GITOPS --branch=main --ssh-key-algorithm=rsa --private-key-file=/home/<user>/.ssh/id_rsa --interval=1m
+flux create source git flux-system --url=ssh://git@ssh.dev.azure.com/v3/MSBookinfoApp/Bookinfo%20App/K8S-LAB --branch=main --ssh-key-algorithm=rsa --private-key-file=/home/<user>/.ssh/id_rsa --interval=1m
 ```
 
 **IMPORTANT**: The above command will prompt you to add a deploy key to your repository, but Azure DevOps does not support repository or org-specific deploy keys. You may add the deploy key to a user’s personal SSH keys, but take note that revoking the user’s access to the repository will also revoke Flux’s access. The better alternative is to create a machine-user whose sole purpose is to store credentials for automation. Using a machine-user also has the benefit of being able to be read-only or restricted to specific repositories if this is needed.
