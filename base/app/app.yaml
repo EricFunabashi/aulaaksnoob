@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: nginx-tests
+  labels:
+    deploy: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        # So that the image can be pulled from the ACR, we need to attach the ACR to the AKS cluster
+        # az aks update -n aks-lab-weu-1 -g rg-lab-weu-1 --attach-acr rafaeljhr
+        image: nginx:latest
+        # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#example-1
+        # resources:
+        #   requests:
+        #     memory: "64Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "500m"
+        ports:
+        - containerPort: 80
+        env:
+        - name: app_version
+          value: "1.0.0"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: nginx-tests
+  labels:
+    name: nginx-service
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
