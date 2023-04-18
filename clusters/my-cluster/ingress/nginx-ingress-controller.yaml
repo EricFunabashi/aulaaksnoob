@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: nginx-teste.northeurope.cloudapp.azure.com
+  - host: blueapp.fun
     http:
       paths:
       - path: /
