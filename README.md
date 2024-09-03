@@ -115,7 +115,7 @@ The expected output is something like (answer "y" when prompted: `Have you added
 ```
 * Create a Kustomization object in your cluster:
 ```
-# flux create kustomization flux-system --source=flux-system --path="./clusters/my-cluster" --prune=true --interval=1m
+flux create kustomization flux-system --source=flux-system --path="./clusters/my-cluster" --prune=true --interval=1m
 ```
 Note: "--prune=true" means that if anything is removed from the repo, will be removed from the cluster too
 
