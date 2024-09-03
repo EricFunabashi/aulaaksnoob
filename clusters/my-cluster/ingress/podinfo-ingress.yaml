@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: podinfo-ingress
+  namespace: pod-info
 spec:
   rules:
   - host: podinfo.example.com
