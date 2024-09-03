@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo-ingress
+spec:
+  rules:
+  - host: podinfo.example.com  # Substitua pelo seu domínio
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: podinfo  # Substitua pelo nome do seu Service
+            port:
+              number: 9898  # Substitua pela porta do seu Service

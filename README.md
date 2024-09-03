@@ -31,7 +31,7 @@ As a standard approach we are storing flux cluster and *applicational* configura
 * Run the following "kubectl apply" command, in order to create all the needed namespaces:
 
 ```
-# kubectl apply -f ./base/namespaces.yaml
+kubectl apply -f ./base/namespaces.yaml
 ```
 
 # Flux install
@@ -39,15 +39,15 @@ Perform the following steps:
 * Go to your local folder holding the local copy of the intended flux repository. Git clone it, if needed;
 * Export manifest to the .yaml file: 
 ```
-# flux install --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
+flux install --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
 ```
 * Apply the manifests on your cluster: 
 ```
-# kubectl apply -f ./clusters/my-cluster/flux-system/gotk-components.yaml
+kubectl apply -f ./clusters/my-cluster/flux-system/gotk-components.yaml
 ```
 * Commit and push the manifest to the master branch: 
 ```
-# git add . && git commit -m "Starting Flux Installation" && git push
+git add . && git commit -m "Starting Flux Installation" && git push
 ```
 * Verify that the controllers have started: 
 ```
@@ -92,7 +92,7 @@ Note: Output should be:
 * Doing the Flux source configuration as showed below:
 
 ```
-flux create source git flux-system --url=ssh://git@ssh.dev.azure.com/v3/MSBookinfoApp/Bookinfo%20App/K8S-LAB --branch=main --ssh-key-algorithm=rsa --private-key-file=/home/rafael/.ssh/id_rsa --interval=1m
+flux create source git flux-system --url=ssh://git@github.com:jeyvissongomes/aks-gitops.git --branch=main --ssh-key-algorithm=rsa --private-key-file=/c/Users/jgomes/.ssh/id_rsa --interval=1m
 ```
 
 **IMPORTANT**: The above command will prompt you to add a deploy key to your repository, but Azure DevOps does not support repository or org-specific deploy keys. You may add the deploy key to a user’s personal SSH keys, but take note that revoking the user’s access to the repository will also revoke Flux’s access. The better alternative is to create a machine-user whose sole purpose is to store credentials for automation. Using a machine-user also has the benefit of being able to be read-only or restricted to specific repositories if this is needed.
