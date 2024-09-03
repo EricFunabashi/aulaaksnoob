@@ -4,13 +4,13 @@ metadata:
   name: podinfo-ingress
 spec:
   rules:
-  - host: podinfo.example.com  # Substitua pelo seu domínio
+  - host: podinfo.example.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: podinfo  # Substitua pelo nome do seu Service
+            name: podinfo-service  # Substitua pelo nome do seu Service
             port:
               number: 9898  # Substitua pela porta do seu Service

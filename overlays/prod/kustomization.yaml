@@ -3,11 +3,3 @@ kind: Kustomization
 
 resources:
 - ../../base/app
-
-# https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patches/
-
-# patches:
-# - path: app-overlay.yaml
-#   target: 
-#     kind: Deployment
-#     name: nginx-deployment
