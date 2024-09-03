@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
-  namespace: pod-info
+  namespace: ingress-nginx
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: nginx-ingress-controller
-          image: k8s.gcr.io/ingress-nginx/controller:latest
+          image: k8s.gcr.io/ingress-nginx/controller:v1.8.1
           args:
             - /nginx-ingress-controller
           env:
@@ -32,3 +32,19 @@ spec:
               containerPort: 80
             - name: https
               containerPort: 443
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress
+  namespace: ingress-nginx
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+    - port: 443
+      targetPort: 443
+  selector:
+    app: nginx-ingress
